@@ -13,7 +13,7 @@ public class LoginPageCRMLogoVerificationTest extends TestBase {
 	public void loginPageLogoValidationTest() throws IOException, InterruptedException {
 		LoginPage login = new LoginPage();
 		login.validateCRMLogo();
-		login.compareImages("crmLogo", "oginPageLogoValidationTest_1679144833262");
+		login.compareImages("crmLogo", "LoginPageLogoValidationTest_1679144833262");
 
 	}
 
