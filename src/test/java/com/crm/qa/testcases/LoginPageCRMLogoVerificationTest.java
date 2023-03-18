@@ -14,7 +14,5 @@ public class LoginPageCRMLogoVerificationTest extends TestBase {
 		LoginPage login = new LoginPage();
 		login.validateCRMLogo();
 		login.compareImages("crmLogo", "LoginPageLogoValidationTest_1679144833262");
-
 	}
-
 }

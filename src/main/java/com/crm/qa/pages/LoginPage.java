@@ -23,60 +23,59 @@ import ru.yandex.qatools.ashot.comparison.ImageDiff;
 import ru.yandex.qatools.ashot.comparison.ImageDiffer;
 
 public class LoginPage extends TestBase {
-	
 
 	public Logger log = LogManager.getLogger(LoginPage.class);
 	public static ScreenshotHelper scrn = new ScreenshotHelper();
 
-	
-	//Page Factory Object Repository
+	// Page Factory Object Repository
 	@FindBy(name = "username")
 	WebElement username;
-	
+
 	@FindBy(name = "password")
 	WebElement password;
-	
+
 	@FindBy(xpath = "//input[@type='submit']")
 	WebElement loginBtn;
-	
+
 	@FindBy(xpath = "//a[contains(text(), 'Sign Up')]")
 	WebElement signUpBtn;
-	
+
 //	@FindBy(xpath = "//button[@class='navbar-toggle']//following-sibling::a[@class='navbar-brand']")
 //	WebElement crmLogo;
-	
+
 	@FindBy(css = "#imagetrgt")
 	WebElement crmLogo;
-	
-	//Initializing the Page Objects
+
+	// Initializing the Page Objects
 	public LoginPage() {
 		PageFactory.initElements(driver, this);
 	}
 
-	//Actions
+	// Actions
 	public void validateLoginPageTitle(String expectedTitle) {
-		String actualTitle =  driver.getTitle();
-		Assert.assertTrue(actualTitle.equalsIgnoreCase(expectedTitle), "Title is not as expected");
+		String actualTitle = driver.getTitle();
+		Assert.assertTrue(actualTitle.equalsIgnoreCase(expectedTitle),
+				"Expected Title : " + expectedTitle + "Actual Title : " + actualTitle);
 	}
-	
+
 	public void validateCRMLogo() {
 		Assert.assertTrue(crmLogo.isDisplayed(), "CRM Logo is not Displayed");
 		log.info("crm logo is displayed");
 	}
-	
+
 	public HomePage login(String un, String pswd) {
 		username.sendKeys(un);
 		password.sendKeys(pswd);
 		loginBtn.click();
 		return new HomePage();
-		
+
 	}
-	
+
 	public void makeImage(String name) throws IOException, InterruptedException {
 		Assert.assertTrue(crmLogo.isDisplayed());
 		ScreenshotHelper.makeScreenshot(crmLogo, name);
 	}
-	
+
 	public void compareImages(String name, String fileName) throws IOException, InterruptedException {
 		log.info("Comparing image difference");
 		File path = new File(ScreenshotHelper.makeScreenshot(crmLogo, name).toString());
@@ -90,8 +89,7 @@ public class LoginPage extends TestBase {
 			Assert.assertFalse(diff.hasDiff(), "Images are not same");
 			path.delete();
 			log.info("compared images doesn't have any difference");
-		}
-		catch(FileNotFoundException e) {
+		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
 	}
