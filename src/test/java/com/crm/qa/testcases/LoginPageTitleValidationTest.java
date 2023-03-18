@@ -14,7 +14,6 @@ public class LoginPageTitleValidationTest extends TestBase {
 	public void loginPageTitleVerificationTest() throws IOException {
 		LoginPage loginPage = new LoginPage();
 		String expectedTitle = Constants.WEBSITE_TITLE;
-
 		loginPage.validateLoginPageTitle(expectedTitle);
 	}
 }
